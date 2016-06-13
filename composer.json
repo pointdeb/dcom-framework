@@ -1,0 +1,26 @@
+{
+    "name": "dcom/framework",
+    "description": "This is a Php Framework",
+    "type": "library",
+    "keywords": ["framework","database"],
+    "version":"0.1.0",
+    "minimum-stability": "dev",
+    "require": {
+        "php": ">=5.3.3",
+        "talesoft/tale-jade": "*",
+        "vkbansal/frontmatter":"*"
+    },
+    "require-dev": {},
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Stephano Romain",
+            "email": "stephano.romain@gmail.com"
+        }
+    ],
+    "autoload":{
+      "psr-4":{
+        "dcom\\": "src"
+      }
+    }
+}
