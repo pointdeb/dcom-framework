@@ -51,7 +51,7 @@ class Dcom extends Controller{
 				}
 			}
 			else{
-				return $this->render('conf/init',[],true);
+				return $this->render('conf/init',['title'=>'Configuration'],true);
 			}
 	}
 	public function parseData(){

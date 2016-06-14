@@ -15,7 +15,7 @@
   {
     private $_is_ready=false;
     public $_config = array();
-    function __construct($base_dir)
+    function __construct($base_dir='')
     {
       if (isset($base_dir)&&$base_dir!=='') {
         $conf_dir=$base_dir.'\app\conf';
@@ -26,7 +26,7 @@
         }
         return true;
       }
-      echo 'canot find your base_dir \n';
+      //new DExceptions('canot find your base_dir ');
     }
     public function getConf(){
         return $this->_config;
@@ -45,13 +45,13 @@
       }
       return $this->_is_ready;
     }
-    public static function setConf($array=array()){
-      $file=base_dir.'\\app\\'.self::$_conf_file;
-      if ((is_file($file)||$f=fopen($file,'wa+'))) {
+    public function setConf($array=array()){
+      $file=base_dir.'\app\conf\config.yml';
+      if ($f=fopen($file,'wa+')) {
 fwrite($f,"---
 run_mod: product
 layout:
-  engine: 'html'
+  engine: 'jade'
 database:
   server: 'mysql'
   host  : '".$array['host']."'

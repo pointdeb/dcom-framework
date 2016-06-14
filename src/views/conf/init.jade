@@ -13,5 +13,7 @@ block content
           label(for='dbname') DB Name:
           input#dbname.form-control(type='text', name='dbname')
           button.btn.btn-primary.glyphicon.glyphicon-floppy-save(type='submit', name='confirm')  Run
-    if $_POST['confirm']
-      p=$_POST['user']
+    if isset($_POST['confirm'])
+      $conf= new dcom\components\config\Config;
+        if $conf->setConf($_POST)
+            header('location:'.$root)
