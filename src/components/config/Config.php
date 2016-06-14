@@ -50,6 +50,7 @@
       if ($f=fopen($file,'wa+')) {
 fwrite($f,"---
 run_mod: product
+error_view: default/error
 layout:
   engine: 'jade'
 database:

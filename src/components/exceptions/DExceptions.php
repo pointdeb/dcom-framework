@@ -11,7 +11,7 @@
 				$this->render('error/error',['msg'=>$msg],true);
 				die();
 			}
-			$this->render('error/error',['msg'=>$msg],true);
+			$this->render($this->get('framework::config::error_view'),['msg'=>$msg]);
 			die();
 		}
 	}
