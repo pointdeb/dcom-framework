@@ -4,6 +4,14 @@ block content
     hr
     form#initConf(method='post')
       .form-group
+          label(for='run_mod') Run Mode:
+            select#run_mod.form-control(name="run_mod")
+              option(value="product") Prodution
+              option(value="dev") Developement
+          label(for='engine') View Engine:
+            select#engine.form-control(name="engine")
+              option(value="jade") Jade
+              option(value="html") Html
           label(for='host') DB host:
           input#host.form-control(type='text', name='host')
           label(for='user') DB User:
@@ -16,4 +24,4 @@ block content
     if isset($_POST['confirm'])
       $conf= new dcom\components\config\Config;
         if $conf->setConf($_POST)
-            header('location:'.$root)
+                

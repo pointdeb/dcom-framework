@@ -34,7 +34,7 @@
         $this->set('framework::routing',self::$_routing->getRouting());
       }
       if (!self::$_jade) {
-        self::$_jade    = new Jade\Renderer();
+        self::$_jade    = new Jade\Renderer(['pretty'=>true]);
       }
       if (!$this->get('root')) {
         $root='';

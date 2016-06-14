@@ -49,10 +49,10 @@
       $file=base_dir.'\app\conf\config.yml';
       if ($f=fopen($file,'wa+')) {
 fwrite($f,"---
-run_mod: product
+run_mod: ".$array['run_mod']."
 error_view: default/error
 layout:
-  engine: 'jade'
+  engine: '".$array['engine']."'
 database:
   server: 'mysql'
   host  : '".$array['host']."'
@@ -62,6 +62,7 @@ database:
 ---
 ---");
         fclose($f);
+        header('location:'.$this->get('root'));
         return true;
       }
       return false;
