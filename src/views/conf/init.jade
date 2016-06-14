@@ -1,0 +1,17 @@
+extends ../layout/layout
+block content
+    h2.title Dcom-db
+    hr
+    form#initConf(method='post')
+      .form-group
+          label(for='host') DB host:
+          input#host.form-control(type='text', name='host')
+          label(for='user') DB User:
+          input#user.form-control(type='text', name='user')
+          label(for='pass') DB Password:
+          input#pass.form-control(type='text', name='pass')
+          label(for='dbname') DB Name:
+          input#dbname.form-control(type='text', name='dbname')
+          button.btn.btn-primary.glyphicon.glyphicon-floppy-save(type='submit', name='confirm')  Run
+    if $_POST['confirm']
+      p=$_POST['user']
