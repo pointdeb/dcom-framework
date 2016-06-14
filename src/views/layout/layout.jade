@@ -1,1 +1,14 @@
-p= $msg
+doctype html
+html.dcom(lang='en')
+  head
+    meta(charset='utf-8')
+    title=$title
+    link(rel="icon", type="image/png", href=$root.'/layout/dcom-css/img/kungfu.ico')
+    link(rel="stylesheet", href=$root."/layout/bootstrap-3.3.6/dist/css/bootstrap-theme.min.css", type="text/css")
+    link(rel="stylesheet", href=$root."/layout/bootstrap-3.3.6/dist/css/bootstrap.min.css", type="text/css")
+    link(rel="stylesheet", href=$root."/layout/dcom-css/main.css", type="text/css")
+    link(rel='stylesheet', type='text/css', href=$root.'/layout/dcom-css/error.css')
+  body.dcom
+    block content
+    script(type='text/javascript', src=$root.'/layout/dcom-js/jquery-1.11.2.min.js')
+    script(type='text/javascript', src=$root.'/layout/bootstrap-3.3.6/dist/js/bootstrap.min.js')

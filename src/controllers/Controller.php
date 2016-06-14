@@ -34,7 +34,7 @@
         $this->set('framework::routing',self::$_routing->getRouting());
       }
       if (!self::$_jade) {
-        self::$_jade    = new Jade\Renderer();
+        self::$_jade    = new Jade\Renderer(['pretty' => true]);
       }
     }
     public function ready(){
@@ -70,8 +70,24 @@
         }else{
           $layout_dir='../src/views/';
         }
-        $file=$layout_dir.$view.'.php';
-        if (file_exists($file)) {
+        $engine=$this->get('framework::config::layout::engine');
+        if ($engine=='jade'||$app) {
+          $file=$layout_dir.$view.'.jade';
+          if (file_exists($file)) {
+              $root='';
+              if (isset($_SERVER['BASE'])) {
+                $root=$_SERVER['BASE'];
+              }
+              $data['root']=$root;
+              self::$_jade->addPath($layout_dir);
+              echo self::$_jade->render($file,$data);
+              return ;
+            }
+            die($view.'.jade not found');
+        }
+        if ($engine=='html') {
+          $file=$layout_dir.$view.'.php';
+          if (file_exists($file)) {
             extract($data);
             $root='';
             if (isset($_SERVER['BASE'])) {
@@ -81,6 +97,8 @@
             return ;
           }
           die($view.'.php not found');
+        }
+        new DExceptions('Please select your Layout engine');
     }
     public function get($key,$app=array()){
 			$result=$this->getTabVal($key,$app);
