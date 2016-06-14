@@ -34,7 +34,14 @@
         $this->set('framework::routing',self::$_routing->getRouting());
       }
       if (!self::$_jade) {
-        self::$_jade    = new Jade\Renderer(['pretty' => true]);
+        self::$_jade    = new Jade\Renderer();
+      }
+      if (!$this->get('root')) {
+        $root='';
+        if (isset($_SERVER['BASE'])) {
+          $root=$_SERVER['BASE'];
+        }
+        $this->set('root',$root);
       }
     }
     public function ready(){
@@ -74,11 +81,7 @@
         if ($engine=='jade'||$app) {
           $file=$layout_dir.$view.'.jade';
           if (file_exists($file)) {
-              $root='';
-              if (isset($_SERVER['BASE'])) {
-                $root=$_SERVER['BASE'];
-              }
-              $data['root']=$root;
+              $data['root']=$this->get('root');
               self::$_jade->addPath($layout_dir);
               echo self::$_jade->render($file,$data);
               return ;
@@ -89,10 +92,7 @@
           $file=$layout_dir.$view.'.php';
           if (file_exists($file)) {
             extract($data);
-            $root='';
-            if (isset($_SERVER['BASE'])) {
-              $root=$_SERVER['BASE'];
-            }
+            $root=$this->get('root');
             require $file;
             return ;
           }
