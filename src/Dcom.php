@@ -2,6 +2,10 @@
 namespace dcom;
 use dcom\controllers\Controller;
 use dcom\components\exceptions\DExceptions;
+//error_reporting(0);
+set_error_handler('dcom\components\exceptions\DExceptions::error_handler');
+set_exception_handler('dcom\components\exceptions\DExceptions::exception_handler');
+register_shutdown_function('dcom\components\exceptions\DExceptions::error_fatales_handler');
 class Dcom extends Controller{
 	protected $_controller=null;
 	protected $_method=null;

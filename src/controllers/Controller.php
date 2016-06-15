@@ -78,7 +78,7 @@
           $layout_dir='../src/views/';
         }
         $engine=$this->get('framework::config::layout::engine');
-        if ($engine=='jade'||$app) {
+        if ($app) {
           $file=$layout_dir.$view.'.jade';
           if (file_exists($file)) {
               $data['root']=$this->get('root');
@@ -86,7 +86,19 @@
               echo self::$_jade->render($file,$data);
               return ;
             }
-            die($view.'.jade not found');
+            echo '<p class="bg-danger">'.$layout_dir.''.$view.'.jade not found</p>';
+            return ;
+        }
+        if ($engine=='jade') {
+          $file=$layout_dir.$view.'.jade';
+          if (file_exists($file)) {
+              $data['root']=$this->get('root');
+              self::$_jade->addPath($layout_dir);
+              echo self::$_jade->render($file,$data);
+              return ;
+            }
+            echo '<p class="bg-danger">'.$layout_dir.''.$view.'.jade not found</p>';
+            return ;
         }
         if ($engine=='html') {
           $file=$layout_dir.$view.'.php';
@@ -96,7 +108,8 @@
             require $file;
             return ;
           }
-          die($view.'.php not found');
+          echo '<p class="bg-danger">'.$layout_dir.''.$view.'.jade not found</p>';
+          return ;
         }
         new DExceptions('Please select your Layout engine');
     }
